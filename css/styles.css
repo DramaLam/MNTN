@@ -1,0 +1,591 @@
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-Medium.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Chronicle Display';
+  src: url('../fonts/ChronicleDisplay-Semi.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Chronicle Display';
+  src: url('../fonts/ChronicleDisplay-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/**
+Нормализация блочной модели
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+*/
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+*/
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+*/
+:where(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  dl
+):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+*/
+:where(ul[class]) {
+  list-style: none;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+*/
+p {
+  --paragraphMarginBottom: 24px;
+
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+*/
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+
+/**
+  Упрощаем работу с изображениями
+*/
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+*/
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  height: 100%;
+  /**
+    Плавный скролл
+  */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+  */
+  line-height: 1.5;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+*/
+svg *[fill] { fill: currentColor }
+svg *[stroke] { stroke: currentColor }
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+*/
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+*/
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:root {
+  --color-bg: #0B1D26;
+  --color-white: #ffffff;
+  --color-accent: #FBD784;
+
+  --font-family: "Gilroy", sans-serif;
+  --second-family: "Chronicle Display", sans-serif;
+
+  --container-width: 1462px;
+  /* Чтобы контент не слипался при изменение ширины экрана*/
+  --container-padding-x: 30px; 
+
+  /* для плавности интерактивных элементов */
+  --transition-duration: 0.2s;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-white);
+  transition: var(--transition-duration);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+.accent-text {
+  color: var(--color-accent);
+}
+
+.link-details:hover {
+  color: var(--color-white);
+}
+
+.link-details::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 24px;
+  margin-left: 10px;
+  margin-block: -6px;
+  background: url('../icons/arrow-right.svg') center/contain no-repeat;
+}
+
+.accent-title {
+  position: relative;
+  padding-left: 104px;
+  font-weight: 800;
+  letter-spacing: 0.33em;
+  text-transform: uppercase;
+}
+
+.accent-title::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 72px;
+  height: 2px;
+  background: var(--color-accent);
+}
+
+.medium-title {
+  font-family: var(--second-family);
+  font-weight: 600;
+  font-size: clamp(40px, 3.33vw, 64px);
+}
+
+.no-scroll {
+  overflow-y: hidden;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-white);
+  background-color: var(--color-bg);
+  background-image: url('../images/bg.jpg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+.container-wide {
+  max-width: 1810px;
+  margin-inline: auto;
+  padding: 0 25px;
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x); 
+}
+
+.logo-text {
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 64px;
+  margin-bottom: 200px;
+}
+
+.header-menu-list {
+  display: flex;
+}
+
+.header-menu-item:not(:last-child) {
+  margin-right: 40px;
+}
+
+.header-login {
+  display: flex;
+}
+
+.header-login-logo {
+  margin-right: 8px;
+}
+
+.nav-button {
+  display: none;
+  position: relative;
+  z-index: 4;
+  width: 42px;
+  height: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.nav-button-icon {
+  display: block;
+  position: relative;
+  border: none;
+}
+
+.nav-button-icon,
+.nav-button-icon::before,
+.nav-button-icon::after {
+  width: 42px;
+  height: 4px;
+  background-color: var(--color-white);
+}
+
+.nav-button-icon::before,
+.nav-button-icon::after {
+  position: absolute;
+  content: '';
+  display: block;
+  left: 0;
+}
+
+.nav-button-icon::before {
+  top: -10px;
+}
+
+.nav-button-icon::after {
+  top: 10px;
+}
+
+.nav-button-close .nav-button-icon {
+  background-color: transparent;
+}
+
+.nav-button-close .nav-button-icon::before {
+  transform: rotate(40deg);
+  top: 0;
+}
+
+.nav-button-close .nav-button-icon::after {
+  transform: rotate(-40deg);
+  top: 0;
+}
+
+.nav-mobile {
+  position: fixed;
+  z-index: 3;
+  display: block;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100%;
+  background-color: #0b1d26bb;
+}
+
+.nav-mobile {
+  display: none;
+  align-content: space-between;
+  padding: 72px 90px 25px 25px;;
+}
+
+.nav-mobile .header-menu-list {
+  display: grid;
+  gap: 25px;
+}
+
+.nav-button {
+  display: none;
+}
+
+.nav-button:focus,
+.nav-button:active {
+  outline: none;
+}
+
+.preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 37.89vw;
+}
+
+.preview-follow-text {
+  writing-mode: vertical-rl;
+}
+
+.preview-follow-text,
+.preview-soc1als-item:not(:last-child) {
+  margin-bottom: 24px;
+
+}
+
+.preview-soc1als-link {
+  display: flex;
+  width: 24px;
+}
+
+.preview-information {
+  display: grid;
+  gap: 32px;
+  max-width: 950px;
+  padding-left: 40px;
+}
+
+.preview-title {
+  font-family: var(--second-family);
+  font-weight: 600;
+  font-size: clamp(60px, 4.58vw, 88px);
+  line-height: 114%;
+  text-transform: capitalize;
+}
+
+.preview-information-text {
+  display: inline-block;
+}
+
+.preview-information-text::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 24px;
+  margin-left: 10px;
+  margin-block: -7px;
+  background: url('../icons/arrow_downward.svg') center/contain no-repeat;
+}
+
+.preview-scroll-list {
+  display: grid;
+  justify-items: end;
+}
+
+.preview-scroll-item {
+  padding: 20px;
+  border-right: 3px solid var(--color-white);
+}
+
+.preview-scroll-item:not(:first-child) {
+  border-right: 3px solid rgba(255, 255, 255, .2);
+}
+
+.started-item {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 200px;
+}
+
+.started-content {
+  display: grid;
+  align-items: center;
+  align-content: center;
+  gap: 27px;
+  max-width: 632px;
+  margin-left: 150px;
+}
+
+.backdrop-title {
+  position: relative;
+  z-index: 2;
+}
+
+.backdrop-title::after {
+  content: attr(data-title);
+  position: absolute;
+  z-index: -1;
+  top: -0.65em;
+  left: -0.62em;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 3.7em;
+  line-height: 1;
+  opacity: .1;
+}
+
+.started-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.started-image-content {
+  /* display: flex; */
+}
+
+.started-image {
+  max-width: clamp(500px,29.48vw, 566px);
+  height: 100%;
+}
+
+.footer {
+  padding-bottom: 120px;
+}
+
+.footer-column:first-child {
+  margin-right: 30px;
+}
+
+.footer-body, 
+.footer-column-link {
+  display: flex;
+}
+
+.footer-body {
+  justify-content: space-between;
+}
+
+.footer-column:first-child {
+  display: grid;
+  align-content: space-between;
+}
+
+.footer-column-content {
+  max-width: 300px;
+}
+
+.footer-logo {
+  margin-bottom: 24px;
+}
+
+.footer-extra {
+  opacity: 0.5;
+}
+
+.footer-extra, 
+.footer-column-link {
+  font-weight: 500;
+  line-height: 178%;
+}
+
+.footer-body-link {
+  display: flex;
+}
+
+.footer-column:last-child  {
+  margin-left: 212px;
+}
+
+.footer-column-title {
+  font-size: clamp(20px, 1.25vw, 24px);
+  line-height: 133%;
+  margin-bottom: 24px;
+}
+
+.footer-column-item {
+  display: grid;
+  gap: 16px;
+}

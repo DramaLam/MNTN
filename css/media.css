@@ -1,0 +1,222 @@
+@media (max-width: 1200px) {
+  .preview-title {
+    text-shadow: 0 0 15px #0000006c;
+  }
+
+  .started-content {
+    margin-left: 100px;
+  }
+
+  .backdrop-title::after {
+    top: -0.8em;
+    left: -0.52em;
+  }
+
+  .started-content {
+    margin-left: 80px;
+  }
+
+  .started-image {
+    max-width: clamp(450px, 41.67vw, 500px);
+  }
+
+  .preview {
+    margin-bottom: 27.89vw;
+  }
+
+  .footer-column:last-child {
+    margin-left: 145px;
+  }
+}
+
+@media (max-width: 1020px) {
+  body {
+    font-size: clamp(16px, 1.76vw, 18px);
+  }
+
+  .logo-text {
+    font-size: clamp(24px, 2.94vw, 30px);
+  }
+
+  .preview-title {
+    font-size: clamp(45px, 5.88vw, 60px);
+  }
+
+  .preview-information {
+    gap: 20px;
+  }
+
+  .accent-title {
+    padding-left: 90px;
+    letter-spacing: 0.2em;
+  }
+
+  .medium-title {
+    line-height: 120%;
+  }
+
+  .started-content {
+    gap: 20px;
+  }
+
+  .started-content {
+    margin-left: 0;
+  }
+
+  .backdrop-title::after {
+    left: 0;
+    top: -0.8em;
+  }
+
+  .started-image {
+    max-width: clamp(315px, 44.12vw, 450px)
+  }
+
+  .backdrop-title::after {
+    font-size: 3.2em;
+  }
+
+  .started-item {
+    margin-bottom: 150px;
+  }
+
+  .footer-logo {
+    margin-bottom: 5px;
+  }
+
+  .footer-column-title {
+    margin-bottom: 13px;
+  }
+
+  .footer-column-item {
+    gap: 7px;
+  }
+
+  .footer-column:last-child {
+    margin-left: 110px;
+  }
+
+  .footer {
+    padding-bottom: 50px;
+  }
+}
+
+@media (max-width: 960px) {
+  .header {
+    margin-top: 50px;
+  }
+
+  .footer-column:last-child {
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --container-padding-x: 15px;
+  }
+
+  body {
+    font-size: clamp(14px, 2.29vw, 16px);
+  }
+
+  .container-wide {
+    padding: 0 15px;
+  }
+
+  .header
+  {
+    align-items: center;
+    margin-top: 45px;
+    margin-bottom: 150px;
+  }
+
+  .header-menu, 
+  .header-login {
+    display: none;
+  }
+
+  .nav-mobile-active {
+    display: grid;
+  }
+
+  .nav-mobile .header-menu, 
+  .nav-mobile .header-login {
+    display: block;
+  }
+
+  .nav-button {
+    display: block;
+  }
+
+  .preview-title {
+    font-size: clamp(30px, 5.71vw, 40px);
+  }
+
+  .accent-title {
+    padding-left: 70px;
+  }
+
+  .accent-title::before {
+    width: 50px;
+  }
+
+  .preview-scroll-item {
+    padding: 12px;
+  }
+
+  .preview-follow-text, .preview-soc1als-item:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  .started-item {
+    gap: 50px;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+
+  .started-item:nth-child(even) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .backdrop-title::after {
+    font-size: 3.0em;
+  }
+
+  .started-item {
+    margin-bottom: 100px;
+  }
+
+  .started-item:last-child {
+    margin-bottom: 150px;
+  }
+
+  .footer-body {
+    flex-direction: column-reverse;
+    gap: 45px;
+  }
+
+  .footer-body-link {
+    justify-content: space-evenly;
+  }
+
+  .footer-column:first-child {
+    margin-right: 0;
+  }
+
+  .footer-about {
+    margin-bottom: 15px;
+  }
+
+}
+
+@media (max-width: 500px) {
+  .header {
+    margin-bottom: 60px;
+  }
+
+  .started-item:last-child {
+    margin-bottom: 100px;
+  }
+}
